@@ -1,8 +1,9 @@
 #include<Arduino.h>
 
+// Declaring All Variables As Integers
 int Z,Y,X,W,F;
 
-
+// Function for Displaying
 void disp_7447(int D, int C, int B, int A)
 {
   digitalWrite(2, A); //LSB
@@ -12,6 +13,8 @@ void disp_7447(int D, int C, int B, int A)
 
 }
 
+
+// Initialising Input and Output Pins of Arduino
 void setup() {
     pinMode(2, OUTPUT);  
     pinMode(3, OUTPUT);
@@ -24,10 +27,8 @@ void setup() {
     
 }
 
-
+// The Main Loop Function
 void loop() {
-  
-  
 X = digitalRead(6);//LSB  
 Y = digitalRead(7);  
 Z = digitalRead(8);  
