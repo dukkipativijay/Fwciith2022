@@ -1,7 +1,8 @@
-//Declaring all variables as integers
+#include<Arduino.h>
+
 int Z,Y,X,W,F;
 
-//Code released under GNU GPL.  Free to use for anything.
+
 void disp_7447(int D, int C, int B, int A)
 {
   digitalWrite(2, A); //LSB
@@ -10,7 +11,7 @@ void disp_7447(int D, int C, int B, int A)
   digitalWrite(5, D); //MSB
 
 }
-// the setup function runs once when you press reset or power the board
+
 void setup() {
     pinMode(2, OUTPUT);  
     pinMode(3, OUTPUT);
@@ -23,7 +24,7 @@ void setup() {
     
 }
 
-// the loop function runs over and over again forever
+
 void loop() {
   
   
