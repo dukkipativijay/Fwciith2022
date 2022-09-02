@@ -10,8 +10,6 @@
 \singlespacing
 
 
-
-
 \usepackage{amsthm}
 
 \usepackage{mathrsfs}
@@ -140,15 +138,15 @@ columns=fullflexible
 \renewcommand{\thetable}{\theenumi}
 
 
-Download IDE code from 
+Get CPP code from 
 \begin{lstlisting}
 https://github.com/dukkipativijay/Fwciith2022/tree/main/Assignment%201/Codes/src
 \end{lstlisting}
-Download Assembly code from
+Get Assembly code from
 \begin{lstlisting}
 https://github.com/dukkipativijay/Fwciith2022/tree/main/Assignment%201%20-%20Assembly/Codes
 \end{lstlisting}
-Download GCC code from
+Get GCC code from
 \begin{lstlisting}
 https://github.com/dukkipativijay/Fwciith2022/tree/main/Assignment%201%20-%20GCC/codes
 \end{lstlisting}
@@ -162,17 +160,18 @@ https://github.com/dukkipativijay/Fwciith2022/blob/main/Assignment%201/Latex%20F
 \section{Question-2016 Section C Q6(d)}
 
 Reduce the following Boolean Expression to its simplest form using k-map
-$F=(X,Y,Z,W)= \sum(2,6,7,8,9,10,11,13,14,15)$
+$F(X,Y,Z,W)= \sum(2,6,7,8,9,10,11,13,14,15)$ \\
+\
+\textit{Abstract-}
+\textbf{This manual shows how to use 7447 BCD-seven segment display encoder to display Boolean Logic}
 \section{Contents}
 \raggedright
 \textbf{Components}
 \hspace{10em} 3
-\\\textbf{Hardware}
+\textbf{Hardware}
 \hspace{11em} 4
 \\\textbf{Solution}
-\hspace{11.8em}   5\\
-\textit{Abstract-}
-\textbf{This manual shows how to use 7447 BCD-seven segment display encoder to display Boolean Logic}
+\hspace{11.8em}   5
 \section{Components}
 \centering
 \begin{tabular}{|l|c|c|}
@@ -202,7 +201,7 @@ Make connections between seven segment display and the 7447 ic as per the given 
 \centering
 \\\begin{tabular}{|l|c|c|c|c|c|c|c|}
 \hline
-\textbf{7447} & a' & b' & c' & d' & e' & f' & g'\\
+\textbf{7447} & 13 & 12 & 11 & 10 & 9 & 15 & 14\\
 \hline
 \textbf{Display} & a & b & c & d & e & f & g\\
 \hline
@@ -227,15 +226,17 @@ Make connections between seven segment display and the 7447 ic as per the given 
 \begin{tabular}{|l|c|c|c|c|}
 \hline
 \textbf{7447} & D & C & B & A\\
+
 \hline
+
 \textbf{Arduino} & 5 & 4 & 3 & 2\\
 \hline
 \end{tabular}\\
 \
 \centerline{Table 4.1}\\
-
+\
 \centering
-\begin{tabular}{|l|c|c|c|c|}
+\\\begin{tabular}{|l|c|c|c|c|}
 \hline
 & X & Y & Z & W\\
 \hline
@@ -244,16 +245,17 @@ Make connections between seven segment display and the 7447 ic as per the given 
 \textbf{Arduino} & 6 & 7 & 8 & 9\\
 \hline
 \end{tabular}\\
-
+\
 \centerline{Table 4.2}
-In the above example we are taking number 6 as input to the arduino and displaying 1 on the seven segment display.
-
+In the above example we are taking number 6 as input in binary format by taking 0,1,1,0 as input to the Arduino digital pins 6,7,8,9 respectively.\\
+\
 \section{Solution} 
 \centering
 \textbf{Truth Table}\\
-\begin{tabular}{|c|c|c|c||c|}
+\
+\\\begin{tabular}{|c|c|c|c||c|}
 \hline
-\textbf{X} & \textbf{Y} & \textbf{Z} & \textbf{W} & \textbf{F}\\
+\textbf{X} & \textbf{Y} & \textbf{Z} & \textbf{W} & \textbf{F(X,Y,Z,W)}\\
 \hline
 0 & 0 & 0 & 0 & 0\\
 \hline
@@ -299,12 +301,12 @@ In the above example we are taking number 6 as input to the arduino and displayi
     1 & 1 & 1 & 1\\
     \end{kvmatrix}
     \bundle[color=red]{0}{3}{3}{3}
-    
+
 \end{kvmap}
 \
 \centerline{Table 5.1}
 
-\raggedright{The expression in the above k-map results in XY'}
+\raggedright{The expression from the above k-map is XY'}
 \centering
 \begin{kvmap}
     \begin{kvmatrix}{Z,W,X,Y}
@@ -314,10 +316,11 @@ In the above example we are taking number 6 as input to the arduino and displayi
     1 & 1 & 1 & 1\\
     \end{kvmatrix}
     \bundle[color=blue]{1}{2}{2}{3}
+
 \end{kvmap}\\
 
 \centerline{Table 5.2}
-\raggedright{The expression in the above map k-map results in XW}\\
+\raggedright{The expression from the above k-map is XW}\\
 \centering
 
 \begin{kvmap}
@@ -330,7 +333,7 @@ In the above example we are taking number 6 as input to the arduino and displayi
     \bundle[color=violet]{2}{2}{3}{3}
 \end{kvmap}\\
 \centerline{Table 5.3}
-\raggedright{The expression in the above map k-map results in XZ}\\
+\raggedright{The expression from the above k-map is XZ}\\
 \centering
 \begin{kvmap}
     \begin{kvmatrix}{Z,W,X,Y}
@@ -342,7 +345,7 @@ In the above example we are taking number 6 as input to the arduino and displayi
     \bundle[color=cyan]{2}{1}{3}{2}
 \end{kvmap}\\
 \centerline{Table 5.4}
-\raggedright{The expression in the above k-map results in YZ}
+\raggedright{The expression from the above k-map is YZ}
 \centering
 \begin{kvmap}
     \begin{kvmatrix}{Z,W,X,Y}
@@ -354,17 +357,21 @@ In the above example we are taking number 6 as input to the arduino and displayi
     \bundle[color=black]{3}{0}{3}{3}
 \end{kvmap}\\
 \centerline{Table 5.5}
-\raggedright{The expression in the above k-map results in ZW'}\\
+\raggedright{The expression from the above k-map is ZW'}\\
 \ 
 
 \raggedright
 
-By solving the above Karnaugh Map, we get the simplified boolean expression given below\\
+1. From Table 5.1, we get our first term as XY'
+\\2. By solving Table 5.2 we get the second term as XW\\
+3. By solving the k-map in Table 5.3, we get the third term as XZ\\
+4. By Solving Table 5.3 we get the fourth term as YZ\\
+5. From the Table 5.5 we get the last term as ZW' \\
+\
+\\Finally we get the simplified boolean expression below\\
 \centering
 
 $$F=XY'+XW+XZ+YZ+ZW'$$
-
-
 \end{document}
 
 Footer
