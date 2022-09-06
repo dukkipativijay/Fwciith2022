@@ -34,7 +34,7 @@ Y = digitalRead(3);
 Z = digitalRead(4);  
 W = digitalRead(5);//MSB
 
-F=(X&&!Y)||(X&&W)||(X&&Z)|(Y&&Z)||(Z&&!W);
+F=(X&&!Y)||(X&&W)||(Y&&Z)||(Z&&!W);
 
 if(F==1){
 disp_7447(0,0,0,1);
