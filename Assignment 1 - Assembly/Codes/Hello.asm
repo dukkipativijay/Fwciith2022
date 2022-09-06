@@ -42,18 +42,14 @@ mov t, X ; t = X
 and t, W ; t = XW
 or result, t ; result = XY’ + XW
 
-mov t, X ; t= X
-and t, Z ; t= XZ
-or result, t ; result = XY’ + XW + XZ
-
 mov t, Y ; t = Y
 and t, Z ; t = YZ
-or result, t ; t = XY’ + XW + XZ + YZ
+or result, t ; t = XY’ + XW + YZ
 
 mov t, W ; t = W
 eor t, mask ; t = W’
 and t, Z ; t = ZW’
-or result, t ; t = XY’ + XW + XZ + YZ + ZW’
+or result, t ; t = XY’ + XW + YZ + ZW’
 
 lsl result 
 lsl result 
