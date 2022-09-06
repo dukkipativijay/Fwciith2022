@@ -11,7 +11,7 @@ x = (PIND & (1<<PIND2)) == (1<<PIND2);
 y=(PIND & (1<<PIND3)) == (1<<PIND3);
 z= (PIND & (1<<PIND4)) == (1<<PIND4);
 w= (PIND & (1<<PIND5)) == (1<<PIND5);
-f = ( (x&&(!y))||(x&&w)||(x&&z)||(y&&z)||(z&&(!w)));
+f = ( (x&&(!y))||(x&&w)||(y&&z)||(z&&(!w)));
 PORTB = (f<<PB5);
 }
 return 0;
