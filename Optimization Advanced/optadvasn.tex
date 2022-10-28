@@ -1,0 +1,261 @@
+\documentclass[journal,12pt,twocolumn]{IEEEtran}
+
+\usepackage[utf8]{inputenc}
+\usepackage{kvmap}
+\usepackage{graphics} 
+
+\usepackage{setspace}
+\usepackage{gensymb}
+
+\singlespacing
+
+\usepackage{amsthm}
+
+\usepackage{mathrsfs}
+\usepackage{txfonts}
+\usepackage{stfloats}
+\usepackage{bm}
+\usepackage{cite}
+\usepackage{cases}
+\usepackage{subfig}
+
+\usepackage{longtable}
+\usepackage{multirow}
+
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{steinmetz}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{verbatim}
+\usepackage{tfrupee}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{graphicx}
+\usepackage{tkz-euclide}
+\usepackage{float}
+
+\usetikzlibrary{calc,math}
+\usepackage{listings}
+    \usepackage{color}                                            %%
+    \usepackage{array}                                            %%
+    \usepackage{longtable}                                        %%
+    \usepackage{calc}                                             %%
+    \usepackage{multirow}                                         %%
+    \usepackage{hhline}                                           %%
+    \usepackage{ifthen}                                           %%
+    \usepackage{lscape}     
+\usepackage{multicol}
+\usepackage{chngcntr}
+
+\DeclareMathOperator*{\Res}{Res}
+
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
+
+\renewcommand\thesectiondis{\arabic{section}}
+\renewcommand\thesubsectiondis{\thesectiondis.\arabic{subsection}}
+\renewcommand\thesubsubsectiondis{\thesubsectiondis.\arabic{subsubsection}}
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+\def\inputGnumericTable{}                                 %%
+
+\lstset{
+%language=C,
+frame=single, 
+breaklines=true,
+columns=fullflexible
+}
+\begin{document}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{problem}{Problem}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}{Example}[section]
+\newtheorem{definition}[problem]{Definition}
+
+\newcommand{\BEQA}{\begin{eqnarray}}
+\newcommand{\EEQA}{\end{eqnarray}}
+\newcommand{\define}{\stackrel{\triangle}{=}}
+\newcommand\hlight[1]{\tikz[overlay, remember picture,baseline=-\the\dimexpr\fontdimen22\textfont2\relax]\node[rectangle,fill=blue!50,rounded corners,fill opacity = 0.2,draw,thick,text opacity =1] {$#1$};}
+\bibliographystyle{IEEEtran}
+\providecommand{\mbf}{\mathbf}
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
+\providecommand{\sbrak}[1]{\ensuremath{{}\left[#1\right]}}
+\providecommand{\lsbrak}[1]{\ensuremath{{}\left[#1\right.}}
+\providecommand{\rsbrak}[1]{\ensuremath{{}\left.#1\right]}}
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+\providecommand{\lbrak}[1]{\ensuremath{\left(#1\right.}}
+\providecommand{\rbrak}[1]{\ensuremath{\left.#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\providecommand{\lcbrak}[1]{\ensuremath{\left\{#1\right.}}
+\providecommand{\rcbrak}[1]{\ensuremath{\left.#1\right\}}}
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}
+\newcommand{\sgn}{\mathop{\mathrm{sgn}}}
+\providecommand{\abs}[1]{\left\vert#1\right\vert}
+\providecommand{\res}[1]{\Res\displaylimits_{#1}} 
+\providecommand{\norm}[1]{$\left\lVert#1\right\rVert$}
+%\providecommand{\norm}[1]{\lVert#1\rVert}
+\providecommand{\mtx}[1]{\mathbf{#1}}
+\providecommand{\mean}[1]{E\left[ #1 \right]}
+\providecommand{\fourier}{\overset{\mathcal{F}}{ \rightleftharpoons}}
+%\providecommand{\hilbert}{\overset{\mathcal{H}}{ \rightleftharpoons}}
+\providecommand{\system}{\overset{\mathcal{H}}{ \longleftrightarrow}}
+	%\newcommand{\solution}[2]{\textbf{Solution:}{#1}}
+\newcommand{\solution}{\noindent \textbf{Solution: }}
+\newcommand{\cosec}{\,\text{cosec}\,}
+\providecommand{\dec}[2]{\ensuremath{\overset{#1}{\underset{#2}{\gtrless}}}}
+\newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+\newcommand{\mydet}[1]{\ensuremath{\begin{vmatrix}#1\end{vmatrix}}}
+\numberwithin{equation}{subsection}
+\makeatletter
+\@addtoreset{figure}{problem}
+\makeatother
+\let\StandardTheFigure\thefigure
+\let\vec\mathbf
+\renewcommand{\thefigure}{\theproblem}
+\def\putbox#1#2#3{\makebox[0in][l]{\makebox[#1][l]{}\raisebox{\baselineskip}[0in][0in]{\raisebox{#2}[0in][0in]{#3}}}}
+     \def\rightbox#1{\makebox[0in][r]{#1}}
+     \def\centbox#1{\makebox[0in]{#1}}
+     \def\topbox#1{\raisebox{-\baselineskip}[0in][0in]{#1}}
+     \def\midbox#1{\raisebox{-0.5\baselineskip}[0in][0in]{#1}}
+\vspace{3cm}
+\title{\textbf{Optimization Assignment - Advanced} }
+\author{Dukkipati Vijay Sai}
+\maketitle
+\newpage
+\bigskip
+\renewcommand{\thefigure}{\theenumi}
+\renewcommand{\thetable}{\theenumi}
+Get Python code for the figure from 
+\begin{lstlisting}
+https://github.com/dukkipativijay/Fwciith2022/tree/main/Assignment%201/Codes/src
+\end{lstlisting}
+Get LaTex code from
+\begin{lstlisting}
+https://github.com/dukkipativijay/Fwciith2022/tree/main/Assignment%201%20-%20Assembly/Codes
+\end{lstlisting}
+%
+\section{Question}
+\centering
+\textbf{\textit{Q(26), Class - 12, CBSE Paper, 2015}}\\
+\vspace{0.25cm}
+\raggedright
+\textbf{The sum of the surface areas of a cuboid with sides x, 2x, $\frac{x}{3}$ and a sphere is given to be constant. Prove that the sum of their volumes is minimum, if x is equal to three times the radius of sphere. Also find the minimum value of the sum of their volumes.}\\
+\raggedright
+\section{Solution}
+
+\vspace{0.25cm}
+\raggedright
+Let x, 2x, $\frac{x}{3}$ be the lengths of the sides of the Cuboid and r be the radius of the Sphere\\
+\vspace{0.2cm}
+Surface Area of the cuboid is,
+\begin{align*}
+A_1 = 2 (lb + bh + hl)\\
+A_1 = 2x^2 + \frac{2x^2}{3} + \frac{x^2}{3}
+\end{align*}
+\begin{align}
+A_1 = 6x^2
+\label{eq1}
+\end{align}
+\raggedright
+Surface Area of the Sphere is,
+\begin{align}
+A_2 = 4 \pi r^2
+\label{eq2}
+\end{align}
+By the given problem from Eq. \eqref{eq1} and \eqref{eq2} we can write,
+\begin{align}
+6x^2 + 4 \pi r^2 = k \hspace{0.1cm}(constant)
+\label{eq3}
+\end{align}
+Now, the volumes of the cuboid and the sphere can combined will be,
+\begin{align}
+V = \frac{2}{3} x^3 + \frac{4}{3} \pi r^3
+\label{eq4}
+\end{align}
+Now putting the value of r from Eq. \eqref{eq3} in the Eq. \eqref{eq4} we get,
+\begin{align}
+V = \frac{2}{3} x^3 + \frac{4}{3} \Bigg( {\frac{k - 6x^2}{4 \pi}}\Bigg)^{\frac{3}{2}}
+\label{eq5}
+\end{align}
+Given to prove that x = 3r for $V_{min}$. And to find the $V_{min}$\\
+\vspace{0.25cm}
+Hence, differentiating Eq. \eqref{eq5} w.r.t x we get,\\
+\begin{align*}
+\frac{dV}{dr} = \frac{d}{dr} \Bigg( \frac{2}{3} x^3 + \frac{4}{3} \Bigg( {\frac{k - 6x^2}{4 \pi}}\Bigg)^{\frac{3}{2}} \Bigg)
+\end{align*}
+By simplification we get,\\
+\begin{align}
+\frac{dV}{dr} = 2x^2 - 6x \hspace{0.1cm} \Bigg( {\frac{k - 6 x^2}{4 \pi}}\Bigg)^\frac{1}{2}
+\label{eq6} 
+\end{align}
+Now Substitute k from Eq. \eqref{eq1} and then solving for x by equating the \eqref{eq6} to zero,\\
+\begin{align}
+x = 3r
+\label{eq7}
+\end{align}
+Differentiating Eq. \eqref{eq5} once again w.r.t x and substituting \eqref{eq7} it is observed that,
+\begin{align}
+\frac{d^2V}{dr^2} > 0
+\end{align}
+Hence it is a point of Minima.\\
+\vspace{0.2cm}
+Therefore, the sum of their volumes is minimum, if x = 3r.\\
+\vspace{0.25cm}
+\centering
+Hence Proved.\\
+\vspace{0.25cm}
+\raggedright
+Now to find $V_{min}$, By Substituting Eq. \eqref{eq7} in Eq. \eqref{eq4} we get,\\
+\begin{align*}
+V_{min} = \frac{2}{3} ( 3r )^3 + \frac{4}{3} \pi r^3
+\end{align*} 
+\begin{align*}
+\therefore V_{min} = r^3 \Big( 18 + \frac{4}{3} \pi \Big)
+\end{align*}
+\section{Verification Using Geomtric Programming}
+\vspace{0.25cm}
+\raggedright
+Disciplined geometric programming, DGP is a subset of log-log-convex program (LLCP). An LLCP is defined as,\\
+\vspace{0.5cm}
+\hspace{2cm} minimize $f_0(x)$\\
+\vspace{0.2cm}
+\hspace{2cm} subject to $f_i(x) \leq \tilde{f}_i$, i = 1,2,...,m.\\
+\vspace{0.2cm}
+\hspace{3.8cm} $g_i(x) = \tilde{g}_i$, i = 1,2,...,p.
+\begin{align}
+\label{eq8}
+\end{align}
+
+where the functions $f_i$
+				are log-log convex, $\tilde{f}_i$
+ are log-log concave, and the functions $g_i$
+				and $\tilde{g}_i$
+ are log-log affine. An optimization problem with constraints of the above form in which the goal is to maximize or minimize a log-log concave function is also an LLCP. These LLCPs generalize geometric programming.\\
+
+\vspace{0.25cm}
+
+The given problem can be formulated as a DGP as,
+\begin{align}
+V = \min\limits_{r,h} \hspace{0.2cm} \frac{2}{3} x^3 + \frac{4}{3} \pi r^3\\
+s.t \hspace{0.5cm} 6 x^2 + 4 \pi r^2 = k \hspace{0.2cm} (constant)
+\label{eq9}
+\end{align}
+By assuming k = 40 as input, and solving the above DGP Equations using Cvxpy we get,
+
+\begin{align}
+V_{min} = 136.11\\
+x = 3.92\\
+r = 1.30
+\end{align} 
+
+Hence it is proved that $ x = 3r $ for $V_{min}$.\\
+\vspace{0.5cm}
+
+\end{document}
+Footer
