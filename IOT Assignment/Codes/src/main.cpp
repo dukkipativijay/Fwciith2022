@@ -1,48 +1,44 @@
+//----------------------Skeleton Code--------------------//
+#include <WiFi.h>
+#include <WiFiUdp.h>
+#include <ArduinoOTA.h>
 #include<Arduino.h>
+//    Can be client or even host   //
+#ifndef STASSID
+#define STASSID "Vijay"  // Replace with your network credentials
+#define STAPSK  "8143738448"
+#endif
 
-// Declaring All Variables As Integers
-int Z,Y,X,W,F;
+const char* ssid = STASSID;
+const char* password = STAPSK;
 
-// Function for Displaying
-void disp_7447(int D, int C, int B, int A)
+
+void OTAsetup() {
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
+  while (WiFi.waitForConnectResult() != WL_CONNECTED) {
+    delay(5000);
+    ESP.restart();
+  }
+  ArduinoOTA.begin();
+}
+
+void OTAloop() {
+  ArduinoOTA.handle();
+}
+bool X,Y,Z,W,F;
+void setup()
 {
-  digitalWrite(6, A); //LSB
-  digitalWrite(7, B); 
-  digitalWrite(8, C); 
-  digitalWrite(9, D); //MSB
-
+	otasetup();
+pinMode(22,OUTPUT);
 }
-
-
-// Initialising Input and Output Pins of Arduino
-void setup() {
-    pinMode(6, OUTPUT);  
-    pinMode(7, OUTPUT);
-    pinMode(8, OUTPUT);
-    pinMode(9, OUTPUT);
-    pinMode(2, INPUT);  
-    pinMode(3, INPUT);
-    pinMode(4, INPUT);
-    pinMode(5, INPUT);
-    
-}
-
-// The Main Loop Function
-void loop() {
-X = digitalRead(2);//LSB  
-Y = digitalRead(3);  
-Z = digitalRead(4);  
-W = digitalRead(5);//MSB
-
+void loop()
+{
+	otaloop();
+X=1;
+Y=1;
+Z=1;
+W=1; 
 F=(X&&!Y)||(X&&W)||(Y&&Z)||(Z&&!W);
-
-if(F==1){
-disp_7447(0,0,0,1);
-}
-else if (F==0) {
-disp_7447(0,0,0,0);
-} 
-}
-
-
+digitalWrite(22,F);
 }
