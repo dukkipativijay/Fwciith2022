@@ -1,3 +1,15 @@
+/*==========================================================
+Code by G V V Sharma
+March 7, 2021,
+Released under GNU/GPL
+https://www.gnu.org/licenses/gpl-3.0.en.html
+/*==========================================================
+ *
+ *    File   : main.c
+ *    Purpose: main for Pygmy blink onboard led
+ *                                                          
+ *=========================================================*/
+
 #include "Fw_global_config.h"   // This defines application specific charactersitics
 
 #include <stdio.h>
@@ -17,6 +29,7 @@
 #include "s3x_clock.h"
 #include "s3x_pi.h"
 #include "dbg_uart.h"
+
 #include "cli.h"
 
 
@@ -25,22 +38,25 @@ extern const struct cli_cmd_entry my_main_menu[];
 
 const char *SOFTWARE_VERSION_STR;
 
+
+/*
+ * Global variable definition
+ */
+
+
 extern void qf_hardwareSetup();
 static void nvic_init(void);
+
 #define GPIO_OUTPUT_MODE (1)
 #define GPIO_INPUT_MODE (0)
 void PyHal_GPIO_SetDir(uint8_t gpionum,uint8_t iomode);
 int PyHal_GPIO_GetDir(uint8_t gpionum);
 int PyHal_GPIO_Set(uint8_t gpionum, uint8_t gpioval);
 int PyHal_GPIO_Get(uint8_t gpionum);
-#define	CLK_PIN	18
-void disp(int num);
 
 int main(void)
 {
-    uint32_t int Q1=0,Q2=0,Q3=0,Q4=0,Q44=1;
-uint32_t int D1,D2,D3,D4;
-     
+    bool X=1,Y=1,Z=1,W=1,F;
     SOFTWARE_VERSION_STR = "qorc-onion-apps/qf_hello-fpga-gpio-ctlr";
     
     qf_hardwareSetup();
@@ -59,66 +75,27 @@ uint32_t int D1,D2,D3,D4;
 
     CLI_start_task( my_main_menu );
 	HAL_Delay_Init();
+    
+    //Input pins	
+
+    PyHal_GPIO_SetDir(21,1);	//Output PIN to LED
+
+
+
+    while(1)
+    {
 
 	
-/***************START FLASH IMPL***********************/
-PyHal_GPIO_SetDir(2,0); //Input
-PyHal_GPIO_SetDir(4,0); //Input
-PyHal_GPIO_SetDir(6,0); //Input
-PyHal_GPIO_SetDir(6,0); //Input
-PyHal_GPIO_SetDir(22,1); //Output
-PyHal_GPIO_SetDir(20,1); //Output
-PyHal_GPIO_SetDir(18,1); //Output
-PyHal_GPIO_SetDir(16,1); //Output
-while(1) {
-
- PyHal_GPIO_Set(CLK_PIN, 0);
-    HAL_DelayUSec(2000000);    
-    PyHal_GPIO_Set(CLK_PIN, 1);
+	F=(X&&!Y)||(X&&W)||(Y&&Z)||(Z&&!W);
+	
+	PyHal_GPIO_Set(21,F);
     
-    sevenseg_setup();    //Sevenseg ready for display
-    sevenseg(a,b,c,d,e,f,g); 
-     HAL_DelayUSec(2000000);    
-     
-       Q1 = PyHal_GPIO_Get(2);
-    Q2 = PyHal_GPIO_Get(4);
-    Q3= PyHal_GPIO_Get(6)
-    Q4= PyHal_GPIO_Get(8)
-    PyHal_GPIO_Set(22,F);
-    
-    disp(Q4,Q3,Q2,Q1);
-    //clk1();
-    PyHal_GPIO_Set(CLK_PIN, 1);
-     D1=Q44;
-     Q1=D1;
-    disp(Q4,Q3,Q2,Q1);
-   // clk1();
-   PyHal_GPIO_Set(CLK_PIN, 1);
-   D2=Q1;
-   Q2=D2;
-    disp(Q4,Q3,Q2,Q1);
-    //clk1();
-    PyHal_GPIO_Set(CLK_PIN, 1);  
-    D3=Q2;
-    Q3=D3;
-    disp(Q4,Q3,Q2,Q1);
-   //clk1();
-   PyHal_GPIO_Set(CLK_PIN, 1);
-   D4=Q3;
-   Q4=D4;
-   Q44=!Q4;  
-
-   disp(Q4,Q3,Q2,Q1);
-      //clk1();
-PyHal_GPIO_Set(CLK_PIN, 1);
-}
-/***********************END flash IMPL********************************/
-
+    }
     /* Start the tasks and timer running. */
     vTaskStartScheduler();
     dbg_str("\n");
 
-while(1);
+    while(1);
 }
 
 static void nvic_init(void)
@@ -132,7 +109,6 @@ static void nvic_init(void)
     NVIC_SetPriority(FbMsg_IRQn, configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY);
  }    
 
-
 //needed for startup_EOSS3b.s asm file
 void SystemInit(void)
 {
@@ -145,7 +121,7 @@ void SystemInit(void)
 #define FGPIO_OUTPUT_REG (0x40024004)
 #define FGPIO_INPUT_REG (0x40024000)
 //Set GPIO(=gpionum) Mode: Input(iomode = 0) or Output(iomode = 1)
-//Before Set/et GPIO value, the direction must be correctly set
+//Before Set/Get GPIO value, the direction must be correctly set
 void PyHal_GPIO_SetDir(uint8_t gpionum,uint8_t iomode)
 {
     uint32_t tempscratch32;
@@ -226,3 +202,4 @@ int PyHal_GPIO_Get(uint8_t gpionum)
 
     return ((int)gpioval_input);
 }
+
